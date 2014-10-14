@@ -9,8 +9,10 @@ data<-read.table(file='household_power_consumption.txt',sep=';',header=T,
 #convert dates and times with lubridate package
 data[,1]<-dmy(data[,1])
 data[,2]<-hms(data[,2])
+#
+#filter data to include dates 2007-02-01 and 2007-02-02
 filt<-data[year(data[,1])==2007 & month(data[,1])==2 & day(data[,1])<3,]
-
+#
 #open png plot device, create plot#1, close device
 png(file = "plot1.png",width = 480, height = 480)
 with(filt,hist(Global_active_power,xlab='Global Active Power (kilowatts)',
